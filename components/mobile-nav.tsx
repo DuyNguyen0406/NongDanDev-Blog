@@ -36,15 +36,15 @@ export function MobileNav() {
           <MobileLink onOpenChange={setOpen} href="/about">
             About
           </MobileLink>
-          <Link target="_blank" rel="noreferrer" href={siteConfig.links.github}>
-            GitHub
+          <Link target="_blank" rel="noreferrer" href={siteConfig.links.linked}>
+            Linked in
           </Link>
           <Link
             target="_blank"
             rel="noreferrer"
-            href={siteConfig.links.twitter}
+            href={siteConfig.links.website}
           >
-            Twitter
+            Website
           </Link>
         </div>
       </SheetContent>

@@ -14,6 +14,36 @@ export function SiteHeader() {
         <MainNav />
         <div className="flex flex-1 items-center justify-end space-x-2">
           <nav className="flex items-center">
+            <Link
+              href={siteConfig.links.website}
+              target="_blank"
+              rel="noreferrer"
+            >
+              <div
+                className={cn(
+                  buttonVariants({ variant: "ghost" }),
+                  "w-10 px-0 hidden sm:inline-flex"
+                )}
+              >
+                <Icons.website className="h-4 w-4 " />
+                <span className="sr-only">Website</span>
+              </div>
+            </Link>
+            <Link
+              href={siteConfig.links.linked}
+              target="_blank"
+              rel="noreferrer"
+            >
+              <div
+                className={cn(
+                  buttonVariants({ variant: "ghost" }),
+                  "w-10 px-0 hidden sm:inline-flex"
+                )}
+              >
+                <Icons.linked className="h-4 w-4 " />
+                <span className="sr-only">Linked</span>
+              </div>
+            </Link>
             <ModeToggle />
             <MobileNav />
           </nav>
