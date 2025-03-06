@@ -141,6 +141,22 @@ A syntax used to merge values into an object or to spread an object into functio
 
 #### 6.3. Illustration of concatenating objects or arrays.
 
+```jsx
+1  // Aray concatenation
+2  const a1 = [1, 2, 3, 4]
+3  const a2 = [5, 6, 7, 8]
+4  const a3 = [...a1, ...a2]
+5  console.log(a3)
+6  // Destructuring object
+7  const obj = {block:true, role: 'admin', id:1}
+8  const [block, ...newObj] = obj
+9  console.log(newObj)
+
+=>  Console
+>(3) [2, 3, 4]
+>(2) {role: 'admin', id:1}
+```
+
 ### 7. Function Rest Parameters:
 
 Contrary to the spread operator, which spreads array values into parameters, rest parameters merge parameters into an array, allowing quick selection of adjacent arguments instead of listing all needed arguments. The array created by parameters can contain unspecified values from a variadic function.
