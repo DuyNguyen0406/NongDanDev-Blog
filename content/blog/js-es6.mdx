@@ -1,0 +1,307 @@
+---
+title: ES6 (ECMAScript 2015) - "A Single Step" in JavaScript
+description: This is our first blog post. Really cool
+date: 2024-03-06
+tags: ["code", "blog"]
+published: true
+---
+
+# ES6 (ECMAScript 2015) - "A Single Step" in JavaScript
+
+In an era where technologies change rapidly, choosing the right technology to learn is crucial for beginners. Currently, many people choose to learn JavaScript. Why? Simply because it is "easier to approach🤔" than other programming languages and is suitable for those pursuing web development.
+
+JavaScript (JS) is a high-level programming language primarily used for writing web pages. In the past, it was only used to run web pages and was executed by the engine in each browser. Nowadays, JS is supported for writing server-side programs and can even be used for Mobile, Desktop, Machine Learning, etc.
+
+## ES6 Best Practices:
+
+JS may seem easy to approach, but its behavior has caused many developers headaches when debugging programs, especially in versions prior to ES5. Since the release of ES6 (ECMAScript 2015), developers' lives have become much "easier." Below are some of the best practices of ES6:
+
+### 1. Let & Const:
+
+Instead of using `var` or hoisting, which makes runtime debugging difficult, we can now distinguish between variables and constants in JS. `let` allows us to declare variables and reuse them without declaring another variable. `const` allows us to declare a fixed value that cannot be changed, ensuring stability.
+
+#### 1.1. Illustration of using `let` syntax.
+
+```jsx
+1  let a = 20
+2  a = 21
+3  console.log(a)
+
+=>  Console 21
+```
+
+#### 1.2. Illustration of using `const` syntax.
+
+```jsx
+1  const a = 20
+2  a = 21
+3  console.log(a)
+
+=>  Console
+Can not assign to "a" because it is a constant     script.js? 3:0
+```
+
+### 2. Template Literals:
+
+Also known as template strings, this syntax helps us concatenate strings with variables in a more explicit and concise way.
+
+#### 2.1. Illustration of template literals.
+
+### 3. Arrow Functions:
+
+A new syntax for declaring functions, making code shorter and more concise, and especially not bound by `this`, making the function's scope more stable.
+
+#### 3.1. Illustration of arrow functions.
+
+```jsx
+1  // concise syntax
+2  const fun1 = () => 1 + 2
+3  console.log(fun1())
+4
+5  // No Binding this
+6  const fun2 = () => {
+7   console.log(this)
+8  }
+9  fun2.call({id:3})
+
+=>  Console
+3
+>{}
+```
+
+### 4. Destructuring Assignment:
+
+A syntax for extracting elements from an object instead of indirectly accessing them through the object, making our code more concise and avoiding the need to declare multiple variables to access each element inside the object.
+
+#### 4.1. Illustration of destructuring assignment.
+
+```jsx
+1  // Destructuring object
+2  const obj = {id:1, ip: '127.0.0.1'}
+3  const {id, ip} = obj
+4  console.log(id,ip)
+5
+6  // Destructuring array
+7  const arr = [2,4,6,8]
+8  const [e1, e2, e3, e4] = arr
+9  console.log(e1,e2,e3,e4)
+
+=>  Console
+127.0.0.1
+2 4 6 8
+```
+
+### 5. Default Parameters:
+
+We can declare default values for function arguments when parameters are not passed, ensuring that arguments always have a value.
+
+```jsx
+1  funtion a(arg = 'hello world'){
+2  console.log(arg)
+3  }
+
+=>  Console
+hello world
+```
+
+### 6. Spread Operator:
+
+A syntax used to merge values into an object or to spread an object into function parameters. Additionally, it can be used to concatenate objects or arrays.
+
+#### 6.1. Illustration of the spread operator spreading an array into function parameters.
+
+```jsx
+1  funtion func(arg1, arg2, arg3){
+2  console.log(arg1, arg2, arg3)
+3  }
+4  const arr = [1,2,3]
+5  func(...arr)
+
+=>  Console
+1 2 3
+```
+
+#### 6.2. Merging adjacent values in destructuring assignment.
+
+```jsx
+1  // Destructuring array
+2  const a = [1, 2, 3, 4]
+3  const [e1, ...arr2] = arr
+4  console.log(arr2)
+5
+6  // Destructuring object
+7  const obj = {block:true, role: 'admin', id:1}
+8  const [block, ...newObj] = obj
+9  console.log(newObj)
+
+=>  Console
+>(3) [2, 3, 4]
+>(2) {role: 'admin', id:1}
+```
+
+#### 6.3. Illustration of concatenating objects or arrays.
+
+### 7. Function Rest Parameters:
+
+Contrary to the spread operator, which spreads array values into parameters, rest parameters merge parameters into an array, allowing quick selection of adjacent arguments instead of listing all needed arguments. The array created by parameters can contain unspecified values from a variadic function.
+
+#### 7.1. Illustration of rest parameters.
+
+### 8. Classes:
+
+An improvement that makes writing OOP programs more explicit compared to using functions as before.
+
+#### 8.1. Illustration of classes.
+
+### 9. Promises:
+
+An object representing the success or failure of an asynchronous function. It represents a value that may not necessarily be known when the promise is created. It allows us to link handlers to the success or failure of an asynchronous action. This allows asynchronous methods to return values like synchronous methods: instead of immediately returning the final value, the asynchronous method returns a promise that will provide the value at some point in the future. Additionally, it helps us know the status of the function (pending, resolved, rejected) and is used to resolve callback hell.
+
+#### 9.1. Illustration of callback hell.
+
+#### 9.2. Illustration of resolving callback hell with promises.
+
+## ES7 to ES14 Features:
+
+JS has also released many new ES versions, with the latest being ES16. I will list some features of ES7 and above for your reference.
+
+### ES7:
+
+#### 1.1. Exponentiation Operator (`**`): Provides a concise syntax for exponentiation. Example: `2 ** 3` returns `8`.
+
+#### 1.2. `Array.prototype.includes` Method: Allows checking if an array contains a specific element. Example: `[1, 2, 3].includes(2)` returns `true`.
+
+### ES8:
+
+#### 2.1. Async/Await: Provides syntax for handling asynchronous operations sequentially, making code more readable and maintainable.
+
+#### 2.2. `Object.entries` and `Object.values` Methods: Returns an array containing `[key, value]` pairs or just the values of an object.
+
+#### 2.3. String Padding (`padStart`, `padEnd`): Adds characters to the beginning or end of a string to achieve the desired length.
+
+#### 2.4. Trailing Commas in Function Parameter Lists: Allows adding a comma at the end of the parameter list, making it easier to add or remove parameters in future edits.
+
+### ES9:
+
+#### 3.1. Asynchronous Iteration (`for await...of`): Allows iterating over async iterable objects.
+
+#### 3.2. Rest/Spread Properties for Objects: Easily copy or combine objects.
+
+#### 3.3. `Promise.prototype.finally` Method: Called when a promise is resolved or rejected, allowing cleanup operations.
+
+#### 3.4. Regular Expression (RegExp) Improvements: Adds features like `s` (dotAll) flag, lookbehind assertions, and Unicode property escapes.
+
+### ES10:
+
+#### 4.1. `Array.prototype.flat` and `Array.prototype.flatMap` Methods: Flattens multi-dimensional arrays and combines `map` with `flat`.
+
+#### 4.2. `Object.fromEntries` Method: Converts an array of `[key, value]` pairs into an object.
+
+#### 4.3. `String.prototype.trimStart` and `String.prototype.trimEnd` Methods: Removes whitespace from the beginning or end of a string.
+
+#### 4.4. Optional Catch Binding: Allows omitting the error variable declaration in the `catch` block.
+
+#### 4.5. `Function.prototype.toString` Improvement: Returns the exact source code of the function.
+
+#### 4.6. BigInt Support: A new data type for large integer values.
+
+#### 4.7. Access to Symbol Description.
+
+#### 4.8. Object to JSON Conversion Support.
+
+### ES11:
+
+#### 5.1. Nullish Coalescing Operator (`??`): Returns the right-hand operand if the left-hand operand is `null` or `undefined`, otherwise returns the left-hand operand.
+
+#### 5.2. Ensures `Array.prototype.sort()` stability.
+
+#### 5.3. Optional Chaining (`?.`): Accesses properties of an object without causing an error if the object is `null` or `undefined`.
+
+#### 5.4. BigInt: A new data type for representing large integers beyond the `Number` limit.
+
+#### 5.5. `Promise.allSettled`: Returns a promise when all promises are settled, regardless of success or failure.
+
+#### 5.6. `globalThis`: Provides a unified way to access the global object in all environments.
+
+#### 5.7. `String.prototype.matchAll()`: Returns an iterator for all matches in a string.
+
+#### 5.8. `import.meta`: Provides metadata about the current module.
+
+### ES12:
+
+#### 6.1. Logical Assignment Operators (`&&=`, `||=`, `??=`): Combines logical operators with assignment.
+
+#### 6.2. `Promise.any()`: Returns the value of the first fulfilled promise in an array of promises.
+
+#### 6.3. WeakRefs: Allows referencing objects without preventing garbage collection.
+
+#### 6.4. `String.prototype.replaceAll()`: Replaces all occurrences of a substring in a string.
+
+#### 6.5. Numeric Separators (`_`): Makes large numbers easier to read by using underscores.
+
+#### 6.6. `Object.hasOwn()`: Checks if an object owns a specific property (more reliable than `hasOwnProperty()`).
+
+#### 6.7. `Array.prototype.sort()` Improvement: Number sorting now works more accurately without custom comparators.
+
+### ES13:
+
+#### 7.1. `Array.at()`: Allows accessing array elements using negative indices.
+
+#### 7.2. Top-Level `await`: Allows using `await` at the top level in a module without an `async` function.
+
+#### 7.3. WeakRefs with `FinalizationRegistry`: Manages resources and cleans up when objects are garbage collected.
+
+#### 7.4. `Error.cause`: Adds a `cause` property to errors for better error handling.
+
+#### 7.5. `Object.hasOwn()`: Checks if an object directly owns a property (not inherited).
+
+#### 7.6. `copyWithin()` Improvement: Enhances the `copyWithin()` method for more efficient array element copying.
+
+### ES14:
+
+#### 8.1. `Array.prototype.toSorted()`: Returns a sorted copy of an array without modifying the original.
+
+#### 8.2. `Array.prototype.toReversed()`: Returns a reversed copy of an array without modifying the original.
+
+#### 8.3. `Array.prototype.toSpliced()`: Returns a modified copy of an array with added/removed elements without modifying the original.
+
+#### 8.4. `Symbol.prototype.description`: A new property that returns the description of a symbol.
+
+#### 8.5. RegExp Improvement: Enhances regex capabilities with flags like `d` for dotall mode.
+
+#### 8.6. Stack Trace Improvement in Error Handling: Provides more detailed and accurate stack trace information, including in async functions.
+
+#### 8.7. `Object.hasOwn()` Improvement: A more reliable and preferred method for checking an object's properties.
+
+## Backward Compatibility and Solutions:
+
+### 1. Backward Compatibility:
+
+ES6 (ECMAScript 2015) introduced many new features like `let`/`const`, arrow functions, classes, template literals, modules, etc. However, some older browsers and older versions of Safari, Edge, Firefox, and Chrome do not fully support ES6. This leads to some issues:
+
+- ES6 code may not run on older browsers. Users encounter errors when accessing the web.
+- Some new ES6 APIs are missing in older environments. For example: `Promise`, `Map`, `Set`, `Array.prototype.includes()` do not exist.
+- Cannot use `import`/`export` modules on older browsers. ES6 Modules (`import` / `export`) are not supported in some older environments.
+- Older versions of Node.js do not fully support ES6. Before Node.js v12, some ES6 features required special configuration or Babel to transpile.
+
+### 2. Solutions with Polyfill and Transpile:
+
+#### 2.1. What is a Polyfill? When to Use Polyfill?
+
+- Polyfills are code snippets that add missing ES6 APIs or features to older browsers using ES5.
+- Use when: Older browsers lack an API or method but can still execute ES5 JavaScript.
+- Example:
+  - `Promise` is missing in older browsers. Use `core-js` to add it.
+  - `fetch()` is missing in older browsers. Use `whatwg-fetch`.
+  - `Object.assign()` is missing in older browsers. Use `core-js` polyfill.
+
+#### 2.2. What is Transpile? When to Use Transpile?
+
+- Transpile is the process of converting ES6+ code into ES5 so that older browsers can understand it.
+- Use when: ES6 code has new syntax that older browsers do not understand, e.g., `let`/`const`, arrow functions, classes, `import`/`export`, `async`/`await`.
+- Transpile does not add missing APIs (use Polyfill for that).
+- Example: Configure transpile with Babel.
+
+These are just some of the most important best practices of ES6. We don't need to seek out advanced technologies or know many programming languages to fall into the situation of "knowing everything but actually knowing nothing." The most important thing is to specialize in a particular technology, and I hope this article helps you understand JS more deeply. I want to "master" JS, and so do you 😉.
+
+**Note:** Use examples of ES5's disadvantages to compare with ES6.

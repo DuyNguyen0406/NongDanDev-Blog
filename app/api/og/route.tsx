@@ -39,7 +39,7 @@ export async function GET(req: NextRequest) {
               <path d="M4 4a16 16 0 0 1 16 16" />
               <circle cx="5" cy="19" r="1" />
             </svg>
-            <p tw="ml-2 font-bold text-2xl">JollyBlog</p>
+            <p tw="ml-2 font-bold text-2xl">NongDandevBloger</p>
           </div>
           <div tw="flex flex-col flex-1 py-10">
             <div tw="flex text-xl uppercase font-bold tracking-tight font-normal">
@@ -50,7 +50,7 @@ export async function GET(req: NextRequest) {
           <div tw="flex items-center w-full justify-between">
             <div tw="flex text-xl">{siteConfig.url}</div>
             <div tw="flex items-center text-xl">
-              <div tw="flex ml-2">{siteConfig.links.github}</div>
+              {/* <div tw="flex ml-2">{siteConfig.links.github}</div> */}
             </div>
           </div>
         </div>

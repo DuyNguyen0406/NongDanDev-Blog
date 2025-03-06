@@ -6,6 +6,7 @@ export const siteConfig = {
   links: {
     linked: "https://www.linkedin.com/in/namnm/",
     website: "https://nongdan.dev/",
+    github: "https://nongdan.dev/",
   },
 };
 
