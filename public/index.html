@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Memory Leak Demo</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        text-align: center;
+      }
+      button {
+        padding: 10px 20px;
+        margin: 10px;
+        font-size: 16px;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Memory Leak Demo</h1>
+    <p>Elements in memory: <span id="memory-count">0</span></p>
+    <button onclick="startLeak()">Start Memory Leak</button>
+    <button onclick="stopLeak()">Stop Memory Leak</button>
+    <button onclick="clearMemory()">Clear Memory</button>
+
+    <script>
+      let memoryLeakArray = [];
+      let interval;
+
+      function startLeak() {
+        interval = setInterval(() => {
+          const bigData = new Array(1000000).fill("leak"); 
+          memoryLeakArray.push(bigData);
+          document.getElementById("memory-count").innerText =
+            memoryLeakArray.length;
+        }, 200);
+      }
+
+      function stopLeak() {
+        clearInterval(interval);
+      }
+
+      function clearMemory() {
+        memoryLeakArray = []; 
+        document.getElementById("memory-count").innerText =
+          memoryLeakArray.length;
+      }
+    </script>
+  </body>
+</html>

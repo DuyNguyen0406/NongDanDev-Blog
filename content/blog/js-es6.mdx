@@ -1,7 +1,7 @@
 ---
 title: ES6 (ECMAScript 2015) - "A Single Step" in JavaScript
 description: This is our first blog post. Really cool
-date: 2024-03-06
+date: 2025-03-06
 tags: ["code", "blog"]
 published: true
 ---
@@ -147,14 +147,14 @@ A syntax used to merge values into an object or to spread an object into functio
 3  const a2 = [5, 6, 7, 8]
 4  const a3 = [...a1, ...a2]
 5  console.log(a3)
-6  // Destructuring object
-7  const obj = {block:true, role: 'admin', id:1}
-8  const [block, ...newObj] = obj
-9  console.log(newObj)
-
+6  //Object concatenation
+7  const o1 = {id: 1}
+8  const o2 ={address: '72 Làng Tăng Phú'}
+9  const o3 = {...o1, ...o2}
+10 console.log(o3)
 =>  Console
->(3) [2, 3, 4]
->(2) {role: 'admin', id:1}
+>(8) [1, 2, 3, 4, 5, 6, 7, 8]
+>(2) {id: 1, address: "Làng Tăng Phú"}
 ```
 
 ### 7. Function Rest Parameters:
@@ -163,11 +163,38 @@ Contrary to the spread operator, which spreads array values into parameters, res
 
 #### 7.1. Illustration of rest parameters.
 
+```jsx
+1  funtion func(...args) {
+2  console.log(args)
+3  }
+4
+5  func(1,2,3)
+6
+=>  Console
+>(3) [1, 2, 3]
+```
+
 ### 8. Classes:
 
 An improvement that makes writing OOP programs more explicit compared to using functions as before.
 
 #### 8.1. Illustration of classes.
+
+```jsx
+1  class Car {
+2  contructor(){
+3  this.driver = 'Phi'
+4   }
+5  isActive(){
+6    return true
+7   }
+8  }
+9
+10 const car = new Car()
+11 console.log(car.driver, car.isActive())
+=>  Console
+Phi true
+```
 
 ### 9. Promises:
 
@@ -175,7 +202,51 @@ An object representing the success or failure of an asynchronous function. It re
 
 #### 9.1. Illustration of callback hell.
 
+```jsx
+1  let i = 0;
+2
+3  const cbHell = () => {
+4  i++;
+5  return async1(() => {
+6     i++;
+7     return async2(() => {
+8       i++;
+9       return async3(() => {
+10        i++;
+11       return async4(() => {
+12          i++;
+13        return async5(() => {
+14            i++;
+15         return async6(() => {
+16          return i;
+17                      });
+18                  });
+19               });
+20            });
+21         });
+22      });
+23   };
+
+console.log(cbHell()()()()()()());
+
+```
+
 #### 9.2. Illustration of resolving callback hell with promises.
+
+```jsx
+1  let i = 0
+2  const p = 0 () => {
+3  return new Promise((rs, rj) => rs())
+4     .then(() => i++)
+5     .then(() => i++)
+6     .then(() => i++)
+7     .then(() => i++)
+8     .then(() => i++)
+9     .then(() => i++)
+10    .then(() => console.log(i))
+11  }
+12  p()
+```
 
 ## ES7 to ES14 Features:
 

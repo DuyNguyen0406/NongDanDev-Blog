@@ -1,0 +1,205 @@
+---
+title: Kubernetes (K8s) and Docker - Container Orchestration Simplified
+description: An introduction to Kubernetes and Docker, exploring containerization and orchestration for modern applications.
+date: 2025-03-06
+tags: ["docker", "kubernetes", "containerization"]
+published: true
+---
+
+### Kubernetes (K8s) and Docker
+
+Kubernetes (K8s) is an open-source system designed to manage containerized applications. You can think of a container as a small box that contains everything necessary for an application to run, including source code, libraries, and configurations.
+
+K8s manages these containers, ensuring they run smoothly, remain available, and can scale efficiently. It not only launches containers but also monitors them, auto-heals when failures occur, and optimizes resources to avoid waste.
+
+#### Real-World Example:
+
+Imagine running an e-commerce website. On regular days, traffic is stable, requiring minimal resources. However, during peak times like Black Friday or New Year, traffic surges dramatically. Without a smart management system, your servers might crash, causing downtime and lost customers.
+
+K8s makes handling this easy by automatically scaling up the number of containers running your application to meet increased demand. Once the peak period ends, it scales back down, reducing operational costs without manual intervention.
+
+Another great feature of K8s is its ability to handle failures. If a running container crashes, K8s automatically spins up a new one, ensuring your service remains uninterrupted. Additionally, it allows for seamless application updates, rolling out changes gradually to ensure stability before applying them across the system.
+
+Because of these benefits, K8s is widely used by companies like:
+
+- **Google**: Manages services like Gmail, Maps, and YouTube with K8s.
+- **Spotify**: Uses K8s to manage thousands of microservices.
+
+### Kubernetes vs. Docker
+
+Kubernetes and Docker are closely related but serve different purposes in containerized application management. They are not the same, nor are they direct replacements for each other.
+
+To put it simply:
+
+- **Docker** is a tool for creating and running containers.
+- **Kubernetes** is a tool for managing how those containers run, scale, and communicate.
+
+#### How They Work Together:
+
+Docker is the most popular platform for building and running containers. It allows developers to package applications along with all dependencies, ensuring consistency across development and production environments.
+
+However, Docker alone becomes inefficient when managing a large number of containers. When you have tens, hundreds, or even thousands of containers, manual management becomes impractical.
+
+This is where Kubernetes comes in. Kubernetes is designed to manage and orchestrate Docker containers efficiently across multiple machines. If you have an application running on 100 containers, K8s ensures they are evenly distributed across servers, remain available, and restart automatically upon failure.
+
+Kubernetes is not limited to Docker—it also supports other container runtimes like **Containerd** and **CRI-O**. This means K8s is flexible and not tied to a single container technology.
+
+While Kubernetes and Docker can be used separately, they complement each other perfectly. Docker provides the foundation (containers), while Kubernetes orchestrates their deployment and management. If you're running a small application, Docker alone may suffice. But as your app scales, Kubernetes becomes indispensable.
+
+---
+
+### Pass by Value vs. Pass by Reference
+
+#### Pass by Value
+
+When passing by value, a copy of the variable's value is passed into the function. Any changes inside the function do not affect the original variable.
+
+In JavaScript/TypeScript, primitive data types such as **number, string, boolean** are passed by value.
+
+Example:
+
+```jsx
+let a = 5;
+function changeValue(x) {
+  x = 10;
+}
+changeValue(a);
+console.log(a); // Output: 5 (remains unchanged)
+```
+
+#### Pass by Reference
+
+When passing by reference, a reference (memory address) to the original variable is passed. Any modifications inside the function affect the original variable.
+
+Objects like **Array, Object, and Function** are passed by reference in JavaScript/TypeScript.
+
+Example:
+
+```jsx
+function modifyObject(obj: { value: number }) {
+  obj.value = 10;
+  console.log("Inside the function:", obj.value);
+}
+
+let myObj = { value: 5 };
+modifyObject(myObj);
+console.log("Outside the function:", myObj.value); // Changed to 10
+```
+
+| Feature         | Pass by Value                     | Pass by Reference                      |
+| --------------- | --------------------------------- | -------------------------------------- |
+| Data Passed     | Copy of value                     | Memory reference                       |
+| Data Type       | Primitives (number, string, etc.) | Objects (Array, Function, Object)      |
+| External Impact | No effect                         | Can be modified                        |
+| Performance     | Faster                            | May be slower due to memory management |
+
+#### Key Considerations in JavaScript/TypeScript
+
+Even though objects are passed by reference, reassigning a new object does not affect the original one.
+
+Example:
+
+```jsx
+function replaceObject(obj: { value: number }) {
+  obj = { value: 20 }; // Assign a new object
+  console.log("Inside the function:", obj.value);
+}
+
+let originalObj = { value: 5 };
+replaceObject(originalObj);
+console.log("Outside the function:", originalObj.value); // Still 5, not changed
+```
+
+### Memory Management in JavaScript/TypeScript
+
+#### Stack vs. Heap
+
+JavaScript manages memory in two main areas:
+
+- **Stack**: Stores primitive values (number, string, boolean, etc.). Data in the stack is fixed-size and follows a **Last In, First Out (LIFO)** model.
+- **Heap**: Stores complex data types (Object, Array, Function). The heap allows dynamic memory allocation.
+
+#### Memory Storage:
+
+**Pass by Value (Stack):**
+
+```typescript
+function modifyValue(x: number) {
+  x = 10; // Change x inside the function
+  console.log("Inside the function:", x);
+}
+
+let a = 5;
+modifyValue(a);
+console.log("Outside the function:", a); // a is still 5
+```
+
+How to save memory?:
+
+```jsx
+Stack:
+| a: 5 |
+| x: 5 | -> x = 10 (copied, does not affect a)
+```
+
+**Pass by Reference (Heap):**
+
+```jsx
+function modifyObject(obj: { value: number }) {
+  obj.value = 10; // Modify the property inside the object
+  console.log("Inside the function:", obj.value);
+}
+
+let myObj = { value: 5 };
+modifyObject(myObj);
+console.log("Outside the function:", myObj.value); // Changed to 10
+```
+
+How to save memory?:
+
+```jsx
+| myObj | --> Heap: { value: 5 }
+| obj   | --> (references the same memory location)
+
+Heap: { value: 10 } (same address)
+
+```
+
+#### Garbage Collection
+
+JavaScript uses **Garbage Collection (GC)** with the **Mark-and-Sweep** algorithm to free up memory.
+
+**Process:**
+
+1. **Marking**: Identifies objects still in use.
+2. **Sweeping**: Removes unused objects from memory.
+
+Example of memory cleanup:
+
+```jsx
+let obj = { name: "Alice" };
+obj = null; // Original object is now eligible for garbage collection
+```
+
+#### Avoiding Memory Leaks
+
+Memory leaks occur when objects are still referenced but no longer needed. To prevent leaks:
+
+- Use **let/const** instead of global variables.
+- Set unused variables to `null` when no longer needed.
+- Use WeakMap and WeakSet for objects with limited lifespan.
+
+```jsx
+let cache: any = {};
+function storeData() {
+  let data = new Array(1000000).fill("test");
+  cache["data"] = data, //Memory will not be freed, cache wallet holds reference
+}
+storeData();
+```
+
+How to fix it:
+
+```jsx
+cache["data"] = null;
+```

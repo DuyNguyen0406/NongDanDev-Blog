@@ -1,0 +1,139 @@
+---
+title: "Optimizing Performance in React Native re-render"
+description: Unnecessary re-renders in React Native can slow down your app. Learn how to optimize performance with techniques like React.memo, useMemo, and useCallback to keep your app fast and smooth...
+date: 2024-02-28
+tags: ["code", "react", "props"]
+published: true
+---
+
+# Optimizing Performance in React Native
+
+## Common Performance Issues
+
+- **Unnecessary re-renders**: When a component re-renders without actual changes.
+- **Inefficient image handling**: Large image data, loading images without caching.
+- **Poor list performance**: Using `ScrollView` instead of `FlatList` can impact memory usage.
+- **Slow app startup**: Loading too much data when the app opens.
+
+## 1. Optimizing Components
+
+### React.memo
+
+Prevents unnecessary re-renders when props remain unchanged.
+
+```tsx
+import React, { memo } from "react";
+
+const MyComponent = memo(({ data }) => {
+  return <Text>{data}</Text>;
+});
+```
+
+````
+
+### PureComponent
+For class components, `PureComponent` automatically checks for state and prop changes to avoid redundant re-renders.
+
+```tsx
+import React, { PureComponent } from 'react';
+
+class MyComponent extends PureComponent {
+  render() {
+    return <Text>{this.props.data}</Text>;
+  }
+}
+````
+
+### useCallback
+
+Prevents function recreation on every render.
+
+```tsx
+import React, { useCallback } from "react";
+
+const MyComponent = ({ onClick }) => {
+  const handleClick = useCallback(() => {
+    console.log("Clicked!");
+  }, []);
+
+  return <Button onPress={handleClick} title="Click Me" />;
+};
+```
+
+### Use StyleSheet Instead of Inline Styles
+
+```tsx
+import { StyleSheet, Text } from "react-native";
+
+const styles = StyleSheet.create({
+  text: {
+    fontSize: 16,
+    color: "black",
+  },
+});
+
+const MyComponent = () => <Text style={styles.text}>Hello</Text>;
+```
+
+## 2. Efficient Image Handling
+
+- Use `react-native-fast-image` for better caching.
+- Compress images before uploading.
+- Use `resizeMode` like `cover` or `contain`.
+- Lazy load images.
+
+```tsx
+import FastImage from "react-native-fast-image";
+
+const MyImage = () => (
+  <FastImage
+    style={{ width: 100, height: 100 }}
+    source={{ uri: "https://example.com/image.jpg" }}
+    resizeMode={FastImage.resizeMode.cover}
+  />
+);
+```
+
+## 3. Avoid Common Mistakes
+
+- **Minimize state usage**: Use Context or MobX.
+- **Avoid inline function declarations in render**: Use `useCallback()`.
+- **Reduce unnecessary data in Redux**.
+- **Optimize event handling with debounce and throttle**.
+
+## 4. Optimize `useMemo` and `useCallback`
+
+```tsx
+const memoizedValue = useMemo(() => computeExpensiveValue(a, b), [a, b]);
+const memoizedCallback = useCallback(() => doSomething(), [dependencies]);
+```
+
+## 5. Reduce Re-renders
+
+- Use `React.memo` for child components.
+- Use `shouldComponentUpdate` for class components.
+
+## 6. Efficient Use of `FlatList` and `SectionList`
+
+```tsx
+<FlatList
+  data={data}
+  renderItem={({ item }) => <Text>{item.title}</Text>}
+  keyExtractor={(item) => item.id}
+  initialNumToRender={10}
+  windowSize={5}
+  getItemLayout={(data, index) => ({
+    length: ITEM_HEIGHT,
+    offset: ITEM_HEIGHT * index,
+    index,
+  })}
+/>
+```
+
+## 7. Improve App Startup Time
+
+- Load only essential data initially.
+- Use **Code Splitting**.
+- Reduce third-party dependencies.
+
+By following these best practices, you can significantly improve your React Native app's performance and provide a smoother user experience.

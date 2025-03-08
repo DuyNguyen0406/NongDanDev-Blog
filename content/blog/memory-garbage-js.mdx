@@ -1,0 +1,120 @@
+---
+title: Memory Management & Garbage Collection in JavaScript
+description: Learn how JavaScript manages memory and how Garbage Collection works to optimize performance.
+date: 2024-03-06
+tags: ["javascript", "memory-management", "garbage-collection"]
+published: true
+---
+
+# **Memory Management & Garbage Collection in JavaScript**
+
+When learning a programming language, people usually start with basic concepts like variables, functions, data types, loops, etc., then move on to execution syntax, and finally tackle advanced topics specific to that language. In JavaScript (JS), these advanced topics include asynchronous programming, closures, the `this` keyword, and more. However, based on my personal observation, there's an equally important topic that is rarely discussed: **how JavaScript manages memory**.
+
+This article will briefly cover the concepts and mechanisms of memory management in JavaScript.
+
+---
+
+## **What is Memory Management?**
+
+In my opinion, memory management is the process of ensuring that an application uses only the resources it needs, avoiding waste that could negatively impact performance.
+
+Fortunately, JavaScript has an automatic **Garbage Collection (GC)** system, which means developers don't need to manually allocate and free memory like in languages such as C/C++. However, this automation often leads to the misconception that memory management doesn't require attention. Understanding how JavaScript manages memory is essential for optimizing application performance and avoiding memory leaks.
+
+---
+
+## **How Does JavaScript Manage Memory?**
+
+JavaScript manages memory in the following sequence:
+
+1. **Memory Allocation**: When a variable, object, or function is created, JavaScript allocates the necessary memory.
+2. **Memory Usage**: Variables and objects are accessed and used in the program.
+3. **Memory Release**: When an object is no longer referenced, JavaScript reclaims its memory to avoid resource waste ⇒ This is where **Garbage Collection (GC)** comes into play.
+
+---
+
+## **Garbage Collection**
+
+Garbage Collection operates based on specific algorithms:
+
+### 1. **Reference-counting GC (Deprecated)**
+
+This algorithm scans memory, checks which objects are still referenced, and automatically removes those that are no longer in use.
+
+```jsx
+let x = {
+  a: {
+    b: 2,
+  },
+};
+// Create 2 objects: x and a
+
+let y = x;
+// y references x
+
+x = 1;
+// The first object is now only referenced by y
+
+let z = y.a;
+// This object now has 2 references: one as a property,
+// the other as the 'z' variable.
+
+y = "mozila";
+// The originally referenced object now has zero references ⇒ garbage-collected
+
+z = null;
+// The 'a' property now has zero references ⇒ garbage-collected
+```
+
+### Limitations:
+
+```jsx
+function f() {
+  const x = {};
+  const y = {};
+  x.a = y; // x references y
+  y.a = x; // y references x
+
+  return "azerty";
+}
+
+f();
+```
+
+### 2. **Mark-and-Sweep**
+
+This algorithm works by starting from the global window object and traversing down the object graph. Any object that cannot be reached from the global object is marked as unreachable and subsequently removed.
+
+**Key Points:**
+
+**Global variables are not released:** Global variables persist throughout the application's lifecycle, occupying memory even when they are no longer needed.
+⇒ Avoid declaring unnecessary global variables, set them to null after use, or import them from another file (GC can detect and handle this).
+
+**Event Listeners are not removed:** Event listeners attached to a DOM element can retain references to that element even after it is removed from the DOM, leading to memory leaks.
+⇒ Always remove event listeners when they are no longer needed.
+
+**Uncleared DOM references:** Storing references to deleted DOM elements prevents their memory from being released.
+⇒ Use remove() (removes the reference entirely) instead of removeChild() (only removes the element from the DOM).
+
+**Uncleared Timers and Intervals:** Functions like setInterval() can continue running even when no longer needed, causing memory leaks if not cleared.
+⇒ Use clearInterval() when the timer is no longer needed.
+
+---
+
+# **Memory Management in ReactJS**
+
+In ReactJS, developers don't need to worry about manually removing event listeners for element events. Unlike vanilla JavaScript, React does not attach events directly to elements like `<button>`. Instead, it follows a more efficient approach:
+
+1. **Attaches a Single Event Listener**: React attaches a single event listener to the `document` or the root container (e.g., `<div id="root">`).
+2. **Event Bubbling**: When a user interacts with an element (e.g., clicks a button), the event bubbles up to the `document`, where React handles it using **Synthetic Events**.
+3. **Trigger Event Handlers**: React then triggers the corresponding event handler for the clicked element.
+
+This approach makes event management easier and ensures that events are **automatically cleaned up** when a component is unmounted.
+
+While React efficiently manages event listeners for DOM elements, it **cannot automatically handle direct interactions with the `window` object**. Examples include:
+
+- **`window.addEventListener`**: Event listeners attached directly to the `window` object.
+- **`setInterval()`**: Timers that continue running even after a component is unmounted.
+
+In summary, JS has an automatic Garbage Collection system that helps manage memory without manual intervention. However, programmers still need to understand this mechanism to optimize performance and avoid memory leaks. By removing event handlers, limiting all variables, optimal closures, cleaning up DOM references, and canceling timers, we can ensure smoother and more efficient application performance.
+
+> Example: [Memory Leak Demo](/index.html)

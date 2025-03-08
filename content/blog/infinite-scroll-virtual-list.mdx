@@ -1,0 +1,146 @@
+---
+title: "INFINITE SCROLL & VIRTUAL LIST"
+description: "Learn about Infinite Scroll and Virtual List - two essential techniques for optimizing performance when displaying large datasets in web and mobile applications."
+date: "2025-03-06"
+tags: ["infinite-scroll", "virtual-list"]
+published: true
+---
+
+# INFINITE SCROLL & VIRTUAL LIST
+
+## Introduction
+
+Data is at the core of most web and mobile applications. From **news feeds** on social media to **product catalogs** on e-commerce platforms and **data analytics dashboards**, much of the UI revolves around displaying lists of data.
+
+It’s safe to say that **90% of web development work involves displaying and managing these lists**. However, as data grows, rendering thousands of items at once can **reduce performance**, leading to **slow experiences**. This is where **Infinite Scroll and Virtual List** come into play.
+
+---
+
+## Infinite Scroll
+
+What happens when users want to view a massive dataset? Clearly, you can’t throw them a list containing **millions of records**. But why?
+
+### The Problem with Loading All Data at Once
+
+- **Browser Overload:**  
+  Displaying thousands or millions of items in the DOM leads to:
+
+  - High **RAM usage**.
+  - The browser constantly **repainting** and **reflowing** the DOM.
+  - **Laggy and slow** experiences.
+
+- **Network Performance Issues:**
+
+  - Sending an API request to fetch **millions of records at once** will:
+    - **Take a long time to load**.
+    - **Consume significant bandwidth**.
+    - **Risk timeout errors**.
+  - Most users **don’t scroll through all the data**, so loading everything upfront is **unnecessary**.
+
+- **Poor User Experience:**
+  - Users have to **wait longer** before seeing content.
+  - Especially on **mobile devices** with **limited memory**, this can cause **app crashes**.
+
+---
+
+### What About Pagination?
+
+- **Pagination** requires users to click a `"Next"` button to load more content.
+- This works well for **data tables**, but it **disrupts the flow of browsing**.
+- For apps like **TikTok, Facebook, and Shopee**, **natural scrolling** is more important than repeatedly clicking `"Next"`.
+
+**Infinite Scroll solves this by:**
+
+- **Automatically loading new data as users scroll.**
+- **Maintaining a seamless browsing experience.**
+- **Being ideal for social media feeds, product catalogs, and news pages.**
+
+---
+
+## How Infinite Scroll Works
+
+[See the illustration here](https://www.tldraw.com/f/l42oxUgeWzUiYcaaVhvPh?d=v-1048.-353.3194.1734.EEUukuWMI7b6HJHHgiu8Q)
+
+---
+
+## Virtual Scroll (Virtual List)
+
+### The Problem with Infinite Scroll
+
+Infinite Scroll **loads data in chunks**, but it still has a **major drawback**:
+
+1. **DOM Overload Over Time**
+
+   - As the list expands, the number of DOM elements increases.
+   - The browser **consumes more RAM**, causing **lag**.
+
+2. **Expensive Reflow & Repaint**
+
+   - More elements mean the browser has to **recalculate layouts (reflow)** constantly.
+   - This **reduces performance** and **causes lag**.
+
+3. **Unnecessary Resource Consumption**
+   - Most users **don’t scroll through the entire list**, but the browser still keeps all elements in the DOM.
+   - This leads to **wasted memory and resources**.
+
+---
+
+### How Virtual Scroll Solves the Problem
+
+**Virtual Scroll (or Virtual List)** only renders the elements **visible in the viewport**, while removing the rest from the DOM.
+
+### Why Not Just Hide Elements with CSS?
+
+You might think that **hiding elements (`display: none`) or using `content-visibility: hidden`** is enough. However, this **DOES NOT reduce resource usage** because:
+
+- **Elements still exist in the DOM**.
+- **The browser keeps them in memory**, not freeing up resources.
+- **Reflow/repaint costs remain**, still causing lag.
+
+**Virtual Scroll helps:**  
+✔ Only render **visible elements**.  
+✔ Render new elements **as needed** when scrolling.  
+✔ Remove elements that scroll out of view **from the DOM**.
+
+---
+
+## Edge Cases When Implementing
+
+### Dynamic Height Items
+
+- When the list contains items with varying heights, calculating scroll positions becomes complex.
+- Use an **Item Size Estimator** or **Position Indexing**.
+
+### Scrolling to a Specific Item
+
+- When jumping to a specific item (e.g., `"Scroll to product #500"`), you need to:
+  - Determine the exact position of the item.
+  - Calculate the **correct offset**.
+
+### Horizontal Scrolling (Horizontal Virtual Scroll)
+
+- Useful for **horizontally scrollable lists**, such as:
+  - **Video lists (YouTube, Netflix).**
+  - **Large data tables.**
+- Optimize using **CSS Grid or Flexbox**.
+
+---
+
+## Conclusion
+
+Both **Infinite Scroll** and **Virtual List** are **powerful tools** for optimizing performance when displaying large datasets.
+
+| Feature                     | Infinite Scroll          | Virtual Scroll                |
+| --------------------------- | ------------------------ | ----------------------------- |
+| **Load data incrementally** | ✅                       | ✅                            |
+| **Reduce resource usage**   | ❌ (DOM still holds all) | ✅ (Only renders in viewport) |
+| **Optimize scrolling UX**   | ✅                       | ✅                            |
+| **Ideal for massive lists** | ❌                       | ✅                            |
+
+**Use Infinite Scroll when:**  
+✔ You want to **load content continuously** without pagination.  
+✔ **Natural scrolling** is important.
+
+**Use Virtual Scroll when:**  
+✔ The list is **very long** and performance optimization is needed.  
+✔ You need to **reduce the number of DOM elements** to avoid lag.

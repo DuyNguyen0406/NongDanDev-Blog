@@ -1,0 +1,121 @@
+---
+title: Memory Management & Garbage Collection in Three.js
+description: Learn how Three.js manages memory and how Garbage Collection works to optimize performance.
+date: 2024-03-06
+tags: ["threejs", "memory-management", "garbage-collection"]
+published: true
+---
+
+# Understanding 3D Rendering, OpenGL, and WebGL in React Native
+
+Before diving into using Three.js in React Native, it's essential to understand some fundamental concepts of 3D rendering and how graphics are processed on different platforms.
+
+## What is 3D Rendering?
+
+3D rendering is the process of converting 3D models into 2D images or frames that can be displayed on a screen. This process involves multiple stages:
+
+- **Vertices & Meshes**: 3D objects are created using a collection of points (vertices) connected to form shapes (meshes).
+- **Textures & Materials**: Surfaces of 3D objects can be enhanced with images and shading effects to add realism.
+- **Lighting & Shadows**: Simulating real-world lighting conditions using ambient, directional, and point lights.
+- **Camera & Perspective**: Determining how the 3D scene is viewed from different angles and positions.
+- **Rendering Pipeline**: The process of transforming 3D models into pixels on a screen, which includes vertex processing, rasterization, fragment processing, and final output.
+- **Depth & Culling**: Techniques like z-buffering and backface culling improve performance by ensuring only visible surfaces are rendered.
+
+## OpenGL vs. WebGL
+
+### What is OpenGL?
+
+- OpenGL (Open Graphics Library) is a cross-platform, low-level graphics API that provides direct access to GPU hardware for rendering graphics efficiently.
+- It supports both 2D and 3D graphics rendering and is commonly used in gaming, CAD applications, and simulations.
+- OpenGL operates through a state machine, meaning rendering is controlled by setting different states and executing draw commands.
+- It provides access to shaders, buffers, textures, and advanced rendering techniques like tessellation and real-time lighting.
+
+### What is WebGL?
+
+- WebGL (Web Graphics Library) is a JavaScript API based on OpenGL ES (a subset of OpenGL designed for embedded systems). It enables rendering 3D graphics within web browsers without requiring additional plugins.
+- It allows developers to utilize GPU acceleration for complex visual effects, real-time rendering, and interactive experiences on the web.
+- WebGL programs use shaders written in GLSL (OpenGL Shading Language) and rely on a WebGL context within an HTML `<canvas>` element.
+- WebGL operates in a sandboxed environment for security reasons, which can lead to certain limitations in performance and capabilities compared to native OpenGL.
+
+## Why WebGL Matters in React Native
+
+Unlike web development, React Native does not have built-in WebGL support. This makes using 3D libraries like Three.js challenging because they rely on WebGL to render graphics. However, with bridging techniques and additional libraries such as `expo-gl` and `react-native-webgl`, we can still use WebGL-based solutions within React Native.
+
+## Using Three.js in React Native
+
+Three.js is a JavaScript library that simplifies working with WebGL, making it easier to create 3D applications. In React Native, we can use Three.js with `react-three-fiber`, a declarative React wrapper for Three.js.
+
+### Benefits of Three.js in React Native
+
+#### 1. Cross-Platform 3D Rendering
+
+- Enables sharing a single 3D rendering codebase across iOS, Android, and web.
+- Useful for companies building multi-platform 3D applications.
+
+#### 2. Advanced 3D Capabilities
+
+Three.js supports:
+
+- **Physically Based Rendering (PBR)**: Realistic materials and lighting.
+- **Skeletal Animation**: Lifelike character movements.
+- **Particle Systems**: Fire, smoke, and other visual effects.
+- **Post-processing Effects**: Bloom, depth of field, and motion blur.
+- **Scene Graph**: A hierarchical structure to manage objects in a 3D scene efficiently.
+
+#### 3. Declarative Approach with react-three-fiber
+
+Instead of manually handling Three.js objects, `react-three-fiber` allows building 3D scenes using JSX, making it more readable and easier to integrate into a React Native project.
+
+#### Example:
+
+```jsx
+<Canvas>
+  <mesh>
+    <boxGeometry />
+    <meshStandardMaterial color="blue" />
+  </mesh>
+</Canvas>
+```
+
+This approach is more intuitive compared to imperative Three.js code.
+
+## Comparing Three.js in React Native vs. Other Solutions
+
+| Approach                         | Benefits                                     | Drawbacks                                         |
+| -------------------------------- | -------------------------------------------- | ------------------------------------------------- |
+| **Three.js + react-three-fiber** | ✅ Feature-rich, easy integration with React | ❌ Requires bridging WebGL, performance overhead  |
+| **Babylon.js**                   | ✅ Optimized for mobile, built-in physics    | ❌ Smaller community support compared to Three.js |
+| **Unity + React Native**         | ✅ Best for high-performance 3D games        | ❌ Large binary size, complex integration         |
+| **Native OpenGL (GLKit, C++)**   | ✅ Direct access to GPU, best performance    | ❌ Requires native coding (Swift, Java, C++)      |
+| **React Native Skia**            | ✅ Great for 2D graphics                     | ❌ Limited support for complex 3D rendering       |
+
+## Three.js vs. Babylon.js
+
+- **Three.js**: Larger ecosystem, more community resources, and plugin support.
+- **Babylon.js**: Optimized for mobile WebGL, better built-in physics and XR support.
+- **Recommendation**: Three.js for flexibility, Babylon.js for mobile performance.
+
+## Three.js vs. Unity Integration
+
+- **Unity**: More powerful rendering engine, advanced physics, but complex setup.
+- **Three.js**: Lightweight, easy to integrate with React Native UI.
+- **Recommendation**: Unity for high-end 3D games, Three.js for lightweight 3D scenes.
+
+## When to Use Three.js in React Native
+
+✅ **Good Use Cases:**
+
+- 3D data visualization (charts, dashboards)
+- Augmented reality (AR) applications
+- Virtual tours & product previews
+- Interactive UI elements
+
+❌ **Bad Use Cases:**
+
+- High-end mobile gaming (Use Unity or Unreal Engine)
+- Heavy physics-based simulations (Use Babylon.js or Unity)
+- CPU/GPU-intensive applications (Use native OpenGL or Metal)
+
+## Conclusion
+
+Three.js is a great tool for bringing web-based 3D rendering to React Native. While it’s not ideal for high-end games, it excels in data visualization, AR, and UI animations. Compared to alternatives like Unity or Babylon.js, Three.js balances ease of use, performance, and community support. If you need lightweight 3D rendering in a React Native app, Three.js is a strong choice.
