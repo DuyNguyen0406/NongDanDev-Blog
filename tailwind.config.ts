@@ -13,10 +13,6 @@ const config = {
   theme: {
     container: {
       center: true,
-      padding: "2rem",
-      screens: {
-        "2xl": "1400px",
-      },
     },
     extend: {
       fontFamily: {
@@ -78,7 +74,11 @@ const config = {
       },
     },
   },
-  plugins: [require("tailwindcss-animate"), require("@tailwindcss/typography")],
+  plugins: [
+    require("tailwindcss-animate"),
+    require("@tailwindcss/typography"),
+    require("daisyui"),
+  ],
 } satisfies Config;
 
 export default config;

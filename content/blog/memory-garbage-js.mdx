@@ -6,15 +6,15 @@ tags: ["javascript", "memory-management", "garbage-collection"]
 published: true
 ---
 
-# **Memory Management & Garbage Collection in JavaScript**
-
 When learning a programming language, people usually start with basic concepts like variables, functions, data types, loops, etc., then move on to execution syntax, and finally tackle advanced topics specific to that language. In JavaScript (JS), these advanced topics include asynchronous programming, closures, the `this` keyword, and more. However, based on my personal observation, there's an equally important topic that is rarely discussed: **how JavaScript manages memory**.
 
 This article will briefly cover the concepts and mechanisms of memory management in JavaScript.
 
 ---
 
-## **What is Memory Management?**
+<h3 id="1" className="text-[1.375rem] mt-0 font-semibold">
+  What is Memory Management?
+</h3>
 
 In my opinion, memory management is the process of ensuring that an application uses only the resources it needs, avoiding waste that could negatively impact performance.
 
@@ -22,7 +22,9 @@ Fortunately, JavaScript has an automatic **Garbage Collection (GC)** system, whi
 
 ---
 
-## **How Does JavaScript Manage Memory?**
+<h3 id="2" className="text-[1.375rem] mt-0 font-semibold">
+  How Does JavaScript Manage Memory?
+</h3>
 
 JavaScript manages memory in the following sequence:
 
@@ -32,11 +34,13 @@ JavaScript manages memory in the following sequence:
 
 ---
 
-## **Garbage Collection**
+<h3 id="3" className="text-[1.375rem] mt-0 font-semibold">
+  Garbage Collection
+</h3>
 
 Garbage Collection operates based on specific algorithms:
 
-### 1. **Reference-counting GC (Deprecated)**
+### 1. Reference-counting GC (Deprecated)
 
 This algorithm scans memory, checks which objects are still referenced, and automatically removes those that are no longer in use.
 
@@ -80,7 +84,7 @@ function f() {
 f();
 ```
 
-### 2. **Mark-and-Sweep**
+### 2. Mark-and-Sweep
 
 This algorithm works by starting from the global window object and traversing down the object graph. Any object that cannot be reached from the global object is marked as unreachable and subsequently removed.
 
@@ -100,20 +104,22 @@ This algorithm works by starting from the global window object and traversing do
 
 ---
 
-# **Memory Management in ReactJS**
+<h3 id="4" className="text-[1.375rem] mt-0 font-semibold">
+  Memory Management in ReactJS
+</h3>
 
-In ReactJS, developers don't need to worry about manually removing event listeners for element events. Unlike vanilla JavaScript, React does not attach events directly to elements like `<button>`. Instead, it follows a more efficient approach:
+In ReactJS, developers don't need to worry about manually removing event listeners for element events. Unlike vanilla JavaScript, React does not attach events directly to elements like <button>. Instead, it follows a more efficient approach:
 
-1. **Attaches a Single Event Listener**: React attaches a single event listener to the `document` or the root container (e.g., `<div id="root">`).
-2. **Event Bubbling**: When a user interacts with an element (e.g., clicks a button), the event bubbles up to the `document`, where React handles it using **Synthetic Events**.
+1. **Attaches a Single Event Listener**: React attaches a single event listener to the document or the root container (e.g., <div id="root">).
+2. **Event Bubbling**: When a user interacts with an element (e.g., clicks a button), the event bubbles up to the document, where React handles it using **Synthetic Events**.
 3. **Trigger Event Handlers**: React then triggers the corresponding event handler for the clicked element.
 
 This approach makes event management easier and ensures that events are **automatically cleaned up** when a component is unmounted.
 
-While React efficiently manages event listeners for DOM elements, it **cannot automatically handle direct interactions with the `window` object**. Examples include:
+While React efficiently manages event listeners for DOM elements, it **cannot automatically handle direct interactions with the window object**. Examples include:
 
-- **`window.addEventListener`**: Event listeners attached directly to the `window` object.
-- **`setInterval()`**: Timers that continue running even after a component is unmounted.
+- **window.addEventListener**: Event listeners attached directly to the window object.
+- **setInterval()**: Timers that continue running even after a component is unmounted.
 
 In summary, JS has an automatic Garbage Collection system that helps manage memory without manual intervention. However, programmers still need to understand this mechanism to optimize performance and avoid memory leaks. By removing event handlers, limiting all variables, optimal closures, cleaning up DOM references, and canceling timers, we can ensure smoother and more efficient application performance.
 

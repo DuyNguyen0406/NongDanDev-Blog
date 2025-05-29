@@ -1,7 +1,6 @@
 import { Calendar } from "lucide-react";
 import Link from "next/link";
-import { buttonVariants } from "./ui/button";
-import { cn, formatDate } from "@/lib/utils";
+import { formatDate } from "@/lib/utils";
 import { Tag } from "./tag";
 
 interface PostItemProps {
@@ -20,32 +19,34 @@ export function PostItem({
   tags,
 }: PostItemProps) {
   return (
-    <article className="flex flex-col gap-2 border-border border-b py-3">
-      <div>
-        <h2 className="text-2xl font-bold">
-          <Link href={"/" + slug}>{title}</Link>
+    <article className="card bg-base-100 shadow-sm p-4 border border-base-200">
+      <div className="card-body p-0 space-y-2">
+        <h2 className="card-title text-2xl text-base-content">
+          <Link href={`/${slug}`} className="link link-hover text-base-content">
+            {title}
+          </Link>
         </h2>
-      </div>
-      <div className="flex gap-2">
-        {tags?.map((tag) => (
-          <Tag tag={tag} key={tag} />
-        ))}
-      </div>
-      <div className="max-w-none text-muted-foreground">{description}</div>
-      <div className="flex justify-between items-center">
-        <dl>
-          <dt className="sr-only">Published On</dt>
-          <dd className="text-sm sm:text-base font-medium flex items-center gap-1">
+
+        {tags?.length ? (
+          <div className="flex flex-wrap gap-2">
+            {tags.map((tag) => (
+              <Tag tag={tag} key={tag} />
+            ))}
+          </div>
+        ) : null}
+
+        {description && <p className="text-base text-neutral">{description}</p>}
+
+        <div className="flex justify-between items-center pt-2">
+          <div className="text-sm text-base-content flex items-center gap-2">
             <Calendar className="h-4 w-4" />
             <time dateTime={date}>{formatDate(date)}</time>
-          </dd>
-        </dl>
-        <Link
-          href={"/" + slug}
-          className={cn(buttonVariants({ variant: "link" }), "py-0")}
-        >
-          Read more →
-        </Link>
+          </div>
+
+          <Link href={`/${slug}`} className="btn text-base-content px-2">
+            Read more →
+          </Link>
+        </div>
       </div>
     </article>
   );

@@ -6,21 +6,21 @@ tags: ["typescript", "strict typing", "development"]
 published: true
 ---
 
-# Strict Typing in TypeScript
-
 Strict typing in TypeScript is a core concept that ensures variables, functions, parameters, and function return values adhere to a specific data type. This helps detect errors at compile-time rather than runtime, increasing code safety and quality.
 
-## 1. Concept and Benefits of Strict Typing
+<h3 id="1" className="text-[1.375rem] mt-0 font-semibold">
+  1. Concept and Benefits of Strict Typing
+</h3>
 
-When we enable strict mode in TypeScript (by setting `"strict": true` in the `tsconfig.json` file), TypeScript activates a series of strict type checking options such as:
+When we enable strict mode in TypeScript (by setting "strict": true in the tsconfig.json file), TypeScript activates a series of strict type checking options such as:
 
-- **`noImplicitAny`**: Flags errors when a variable or parameter does not have a clearly defined type and is therefore implicitly assigned the `any` type. This helps prevent variables from unintentionally becoming `any`, losing the benefits of static type checking.
-- **`strictNullChecks`**: Flags errors when using variables expected to have values without checking for `null` or `undefined`, unless we explicitly declare and initialize them. This ensures that errors due to null value handling are detected early.
-- **`strictFunctionTypes`**: Applies strict type checking to function parameters, ensuring that functions do not distort the defined data types when passing arguments.
-- **`strictBindCallApply`**: Strictly checks the use of function methods `bind`, `call`, and `apply`, ensuring that the types of passed arguments match the defined types.
-- **`strictPropertyInitialization`**: Requires all class properties to be initialized (or marked as possibly `undefined`) in the constructor or through direct initialization.
-- **`noImplicitThis`**: Ensures that the `this` keyword in functions is always assigned a specific data type instead of the `any` type.
-- **`alwaysStrict`**: Forces the compiler to convert TypeScript code to JavaScript in JavaScript's "strict mode", enhancing security and minimizing unexpected errors.
+- **noImplicitAny**: Flags errors when a variable or parameter does not have a clearly defined type and is therefore implicitly assigned the any type. This helps prevent variables from unintentionally becoming any, losing the benefits of static type checking.
+- **strictNullChecks**: Flags errors when using variables expected to have values without checking for null or undefined, unless we explicitly declare and initialize them. This ensures that errors due to null value handling are detected early.
+- **strictFunctionTypes**: Applies strict type checking to function parameters, ensuring that functions do not distort the defined data types when passing arguments.
+- **strictBindCallApply**: Strictly checks the use of function methods bind, call, and apply, ensuring that the types of passed arguments match the defined types.
+- **strictPropertyInitialization**: Requires all class properties to be initialized (or marked as possibly undefined) in the constructor or through direct initialization.
+- **noImplicitThis**: Ensures that the this keyword in functions is always assigned a specific data type instead of the any type.
+- **alwaysStrict**: Forces the compiler to convert TypeScript code to JavaScript in JavaScript's "strict mode", enhancing security and minimizing unexpected errors.
 
 Applying strict typing offers many benefits:
 
@@ -29,9 +29,11 @@ Applying strict typing offers many benefits:
 - **IDE and Tooling Support**: Editors like Visual Studio Code provide better auto-completion, error checking, and code refactoring when the data types of variables and functions are clear.
 - **Reduced Runtime Errors**: Thanks to static type checking, most errors related to incorrect data type usage are detected before the code runs, avoiding application crashes or freezes.
 
-## 2. How to Enable Strict Typing in TypeScript
+<h3 id="2" className="text-[1.375rem] mt-0 font-semibold">
+  2. How to Enable Strict Typing in TypeScript
+</h3>
 
-To enable strict typing, modify the `tsconfig.json` file as follows:
+To enable strict typing, modify the tsconfig.json file as follows:
 
 ```json
 {
@@ -44,19 +46,21 @@ To enable strict typing, modify the `tsconfig.json` file as follows:
 
 With "strict": true, all the above options are enabled, making data type checking more rigorous.
 
-## 3. Illustrative Examples
+<h3 id="3" className="text-[1.375rem] mt-0 font-semibold">
+  3. Illustrative Examples
+</h3>
 
 Example of noImplicitAny mode:
 
 ```jsx
 // Error: Parameter 'name' implicitly has an 'any' type.
 function greet(name) {
-  console.log(`Hello, ${name}!`);
+  console.log(Hello, ${name}!);
 }
 
 // Corrected:
 function greet(name: string) {
-  console.log(`Hello, ${name}!`);
+  console.log(Hello, ${name}!);
 }
 ```
 
@@ -92,7 +96,7 @@ Example of strictBindCallApply mode:
 
 ```jsx
 function greet(this: { name: string }, message: string) {
-  console.log(`${this.name}: ${message}`);
+  console.log(${this.name}: ${message});
 }
 
 const user = { name: "Alice" };
@@ -127,13 +131,17 @@ function example() {
 }
 ```
 
-# **4. Conclusion**
+<h3 id="4" className="text-[1.375rem] mt-0 font-semibold">
+  4. Conclusion
+</h3>
 
 Strict typing in TypeScript is a powerful mechanism to ensure data type safety, detect errors early, and enhance code maintainability. By enabling strict mode in tsconfig.json, developers can force TypeScript's static type checking system to ensure that all variables, functions, and objects have defined data types, avoiding errors due to incorrect type usage. This not only improves code quality but also enhances the development experience with better support from tools and IDEs.
 
 With strict typing, TypeScript projects become safer, more maintainable, and less prone to runtime errors. This is why many large projects now adopt strict mode to ensure system consistency and reliability.
 
-# **5. Further Enhancements**
+<h3 id="5" className="text-[1.375rem] mt-0 font-semibold">
+  5. Further Enhancements
+</h3>
 
 In addition to TypeScript's strict modes, typescript-eslint provides a range of rules to enforce best practices in data type usage and control type coverage in projects. This helps to check source code more rigorously, avoiding potential errors when using non-specific data types or unsafe type conversions.
 

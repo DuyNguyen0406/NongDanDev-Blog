@@ -36,11 +36,9 @@ export default function RootLayout({
         )}
       >
         <Providers>
-          <div className="relative flex min-h-dvh flex-col bg-background">
-            <SiteHeader />
-            <main className="flex-1">{children}</main>
-            <SiteFooter />
-          </div>
+          <SiteHeader />
+          <main className="content-grid">{children}</main>
+          <SiteFooter />
         </Providers>
       </body>
     </html>
