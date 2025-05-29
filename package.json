@@ -1,12 +1,12 @@
 {
-  "name": "my-first-blog",
+  "name": "nongdandev-blog",
   "version": "0.1.0",
   "public": true,
   "scripts": {
-    "dev": "next dev",
-    "build": "next build",
-    "start": "next start",
-    "lint": "next lint"
+    "start": "velite build && next dev",
+    "build": "velite build && next build",
+    "prod": "next start",
+    "lint": "next lint --fix && prettier --write --log-level=error --write ."
   },
   "dependencies": {
     "@radix-ui/react-avatar": "^1.0.4",
