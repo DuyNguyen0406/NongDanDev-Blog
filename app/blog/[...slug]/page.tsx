@@ -127,7 +127,7 @@ export default async function PostPage({ params }: PostPageProps) {
               Sign up for Nongdandev
             </h2>
             <p className="text-base font-normal leading-[150%] text-slate-900">
-              Stay Updated with the Latest Security Insights!
+              Stay updated with the latest news about us!
             </p>
             <Link href={siteConfig.links.website} passHref>
               <button className="btn bg-green-950 text-[#DCFCE7] w-full">

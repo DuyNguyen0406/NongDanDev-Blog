@@ -37,12 +37,12 @@ export default function Home() {
       </section>
 
       <section className="content-grid col-full-width">
-        <div className="col-content">
+        <div className="col-content lg:px-[12rem]">
           <h2 className="text-3xl sm:text-5xl md:text-6xl lg:text-7xl font-black text-center">
             Latest Posts
           </h2>
 
-          <ul className="flex flex-col">
+          <ul className="flex flex-col mt-4">
             {latestPosts.map(
               (post) =>
                 post.published && (
