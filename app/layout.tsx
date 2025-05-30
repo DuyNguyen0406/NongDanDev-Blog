@@ -37,7 +37,7 @@ export default function RootLayout({
       >
         <Providers>
           <SiteHeader />
-          <main className="content-grid">{children}</main>
+          <main>{children}</main>
           <SiteFooter />
         </Providers>
       </body>

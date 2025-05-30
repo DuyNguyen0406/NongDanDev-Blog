@@ -95,13 +95,13 @@ export default async function PostPage({ params }: PostPageProps) {
   }
 
   return (
-    <article className="py-6 prose dark:prose-invert max-w-[1440px] mx-auto gap-4">
+    <article className="py-6 prose dark:prose-invert max-w-[1440px] mx-auto gap-4 px-4">
       <div className="flex flex-col lg:flex-row  gap-4 flex-1 mb-10">
-        <div className="w-full max-w-[300px] lg:flex-1">
+        <div className="w-full lg:max-w-[300px] lg:flex-1">
           <TableOfContents headings={h3Headings} />
         </div>
 
-        <div className="w-full max-w-[800px] flex flex-col px-4">
+        <div className="w-full max-w-[800px] flex flex-col">
           <h1 className="mb-2">{post.title}</h1>
           <div className="flex gap-2 mb-2">
             {post.tags?.map((tag) => (
@@ -117,7 +117,7 @@ export default async function PostPage({ params }: PostPageProps) {
           <MDXContent code={post.body} />
         </div>
 
-        <div className="w-full max-w-[300px] flex flex-col items-center lg:items-start">
+        <div className="w-full lg:max-w-[300px] flex flex-col items-center lg:items-start">
           <div className="card bg-green-400 shadow-xl p-6 rounded-xl w-full">
             <h2 className="card-title text-slate-900 text-xl font-semibold leading-[150%] mt-0">
               Sign up for Nongdandev
