@@ -14,7 +14,7 @@ export function TableOfContents({
   );
 
   return (
-    <nav className="sticky bg-[#F6F7FB]  rounded-xl w-full max-w-full overflow-hidden">
+    <nav className="sticky bg-[#F6F7FB]  rounded-xl w-full overflow-hidden">
       <ul className="space-y-3">
         <p style={{ color: "#000000" }} className="text-lg font-semibold">
           In this article

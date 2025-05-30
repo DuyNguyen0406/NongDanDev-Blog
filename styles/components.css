@@ -1,0 +1,20 @@
+#hero-section #grid-layout {
+  @apply grid grid-cols-12 gap-7;
+  grid-template-areas: 'b1 b1 b1 b2 b2 b2 b2 b2 b2 b3 b3 b3';
+
+  & > div:nth-child(1) {
+    grid-area: b1;
+  }
+  & > div:nth-child(2) {
+    grid-area: b2;
+  }
+  & > div:nth-child(3) {
+    grid-area: b3;
+  }
+
+  @media (width < theme('screens.lg')) {
+    display: block;
+    grid-template-columns: unset;
+    grid-area: unset;
+  }
+}

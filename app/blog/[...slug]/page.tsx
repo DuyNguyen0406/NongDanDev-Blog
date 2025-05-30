@@ -3,6 +3,7 @@ import { MDXContent } from "@/components/mdx-components";
 import { notFound } from "next/navigation";
 
 import "@/styles/mdx.css";
+import "@/styles/components.css";
 import { Metadata } from "next";
 import { siteConfig } from "@/config/site";
 import { Tag } from "@/components/tag";
@@ -95,31 +96,34 @@ export default async function PostPage({ params }: PostPageProps) {
   }
 
   return (
-    <article className="py-6 prose dark:prose-invert max-w-[1440px] mx-auto gap-4 px-4">
-      <div className="flex flex-col lg:flex-row  gap-4 flex-1 mb-10">
-        <div className="w-full lg:max-w-[300px] lg:flex-1">
+    <section
+      id="hero-section"
+      className="py-6 prose dark:prose-invert max-w-[1440px] mx-auto px-4"
+    >
+      <div id="grid-layout" className="gap-4 mb-10 space-y-6">
+        <div>
           <TableOfContents headings={h3Headings} />
         </div>
 
-        <div className="w-full max-w-[800px] flex flex-col">
+        <div className="flex flex-col">
           <h1 className="mb-2">{post.title}</h1>
           <div className="flex gap-2 mb-2">
             {post.tags?.map((tag) => (
               <Tag tag={tag} key={tag} />
             ))}
           </div>
-          {post.description ? (
+          {post.description && (
             <p className="text-xl mt-0 text-muted-foreground">
               {post.description}
             </p>
-          ) : null}
+          )}
           <hr className="my-4" />
           <MDXContent code={post.body} />
         </div>
 
-        <div className="w-full lg:max-w-[300px] lg:flex-1">
-          <div className="card bg-green-400 shadow-xl p-6 rounded-xl w-full">
-            <h2 className="card-title text-slate-900 text-xl font-semibold leading-[150%] mt-0">
+        <div>
+          <div className="bg-green-400 shadow-xl p-6 rounded-xl w-full">
+            <h2 className="text-slate-900 text-xl font-semibold leading-[150%] mt-0">
               Sign up for Nongdandev
             </h2>
             <p className="text-base font-normal leading-[150%] text-slate-900">
@@ -150,7 +154,8 @@ export default async function PostPage({ params }: PostPageProps) {
           </div>
         </div>
       </div>
+
       <Related posts={PostsRelated} />
-    </article>
+    </section>
   );
 }
