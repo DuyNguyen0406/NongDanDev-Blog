@@ -6,6 +6,7 @@ import { SiteHeader } from "@/components/site-header";
 import { Providers } from "@/components/providers";
 import { siteConfig } from "@/config/site";
 import { SiteFooter } from "@/components/site-footer";
+import "@/styles/layout.css";
 
 const inter = Inter({ subsets: ["latin"], variable: "--font-sans" });
 
@@ -37,7 +38,7 @@ export default function RootLayout({
       >
         <Providers>
           <SiteHeader />
-          <main>{children}</main>
+          <main className="col-content">{children}</main>
           <SiteFooter />
         </Providers>
       </body>
