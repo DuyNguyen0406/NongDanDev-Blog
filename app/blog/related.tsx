@@ -20,8 +20,8 @@ export default function Related({ posts }: { posts: Post[] }) {
                 key={slug}
                 className="flex-1 bg-white border border-gray-200 rounded-xl shadow-sm transition hover:shadow-md hover:-translate-y-1 duration-200"
               >
-                <Link href={`/${slug}`} className="block p-6 no-underline">
-                  <p className="text-lg font-semibold mb-2">{title}</p>
+                <Link href={`/${slug}`} className="block px-8 no-underline">
+                  <p className="text-lg font-semibold">{title}</p>
                   <p className="text-sm line-clamp-2">
                     {description || "No description available."}
                   </p>
