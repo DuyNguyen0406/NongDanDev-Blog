@@ -117,7 +117,7 @@ export default async function PostPage({ params }: PostPageProps) {
           <MDXContent code={post.body} />
         </div>
 
-        <div className="w-full lg:max-w-[300px] flex flex-col items-center lg:items-start">
+        <div className="w-full lg:max-w-[300px] lg:flex-1">
           <div className="card bg-green-400 shadow-xl p-6 rounded-xl w-full">
             <h2 className="card-title text-slate-900 text-xl font-semibold leading-[150%] mt-0">
               Sign up for Nongdandev
